@@ -3,11 +3,10 @@ package com.ztrain.steps;
 import com.ztrain.pageObject.Homepage;
 import com.ztrain.pageObject.LoginPage;
 import com.ztrain.pageObject.RegistrationPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.util.Objects;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -15,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginSteps {
 
-    private LoginPage loginPage;
+    private LoginPage   loginPage;
     private Homepage homepage;
     private RegistrationPage registrationPage;
 
@@ -75,4 +74,25 @@ public class LoginSteps {
         assertEquals(this.registrationPage.getRegisterTitle(), "Inscription", "kjdzl");
     }
 
+    //TEST_OF8-810: Verify password reset
+    @When("User clicks on forgot password link")
+    public void userClicksOnForgotPasswordLink() {
+        this.loginPage.goToResetPasswordPage();
+    }
+
+    @And("User fill in {string} and {string} and validate")
+    public void userFillInAndAndValidate(String email, String newPassword) {
+        this.loginPage.resetPassword(email, newPassword);
+    }
+
+    @Then("User should be redirected on login page")
+    public void userShouldBeRedirectedOnLoginPage() {
+        assertEquals(this.loginPage.loginpage(), "Connexion", "This is not the login page");
+    }
+
+    //TEST_OF8-829: Display products page
+    @Then("The products page should display")
+    public void theProductsPageShouldDisplay() {
+        assertTrue(homepage.displayProductPage(),  "This is not product page");
+    }
 }

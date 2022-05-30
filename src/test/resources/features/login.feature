@@ -30,3 +30,23 @@ Feature: As a customer I want to login so that I can shop
     Given User is on the login page
     When User clicks on the resgister link
     Then User should be directed to the registration page
+
+  @TEST_OF_810
+  Scenario Outline: Verify password reset
+    Given User is on the login page
+    When User clicks on forgot password link
+    And User fill in "<email>" and "<newPassword>" and validate
+    Then User should be redirected on login page
+    Examples:
+      | email             |newPassword |
+      | 237pk69@gmail.com |P@wk/*69    |
+
+  @TEST_OF-829
+  Scenario Outline: Verify successful login with credentials
+    Given User is on the login page
+    When User is logging-in with "<email>" "<password>"
+    Then The products page should display
+
+    Examples:
+      |email             | password|
+      |237pk69@gmail.com | P@wk/*69|
