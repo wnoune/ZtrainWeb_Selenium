@@ -1,8 +1,13 @@
 package com.ztrain.pageObject;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
 
 public class Homepage extends Page{
 
@@ -12,14 +17,72 @@ public class Homepage extends Page{
     @FindBy(id = "style_popular_product_wrapper__z6J0h")
     private WebElement products;
 
-    @FindBy(id = "style_card_body__QuFGN")
+    @FindBy(css = "h2.style_section_title__aO_Du")
+    private WebElement productTitle;
+
+    @FindBy(css = "#style_popular_product_wrapper__z6J0h > div:nth-child(2) > div.style_card_body__QuFGN")
     private WebElement Tshirt;
+
+    @FindBy(css = "div.style_card_body__QuFGN")
+    private List<WebElement> listOfProducts;
 
     @FindBy(id = "style_detail_wrapper__a7fpS")
     private WebElement productDetails;
 
-    public void goToHomePage() {
-        driver.get(ENV.getUrl("/home"));
+    @FindBy(id = "email_login")
+    private WebElement emailField;
+
+    @FindBy(id = "password_login")
+    private WebElement passwordField;
+
+    @FindBy(id = "btn_login")
+    private WebElement submitButton;
+
+    @FindBy(id = "style_btn_add_cart__gTXM7")
+    private WebElement addCardButton;
+
+    @FindBy(id = "style_content_cart_wrapper__mqNbf")
+    private WebElement cardIcon;
+
+    @FindBy(className = "style_productName__lrC3N")
+    private WebElement productName;
+
+    @FindBy(className = "style_btn_add_cart__WFoN1")
+    private List<WebElement> addToCartIcons;
+
+    @FindBy(className = "style_input_quantity__xZDIb")
+    private WebElement inputQuantity;
+
+    @FindBy(className = "style_trash_product_cart__7Yzni")
+    private WebElement deleteProductIcon;
+
+    @FindBy(css = "div.style_card_body__EhpLW > p:nth-child(2)")
+    private WebElement productPrice;
+
+    @FindBy(css = "#style_totalPrice__o2yCy > h5:nth-child(2)")
+    private WebElement totalPriceCart;
+
+    @FindBy(id = "style_empty_cart_wrapper__23a1z")
+    private WebElement emptyCartWrapper;
+
+    @FindBy(id = "style_btn_trash_cart__ttfo9")
+    private WebElement trashCartButton;
+
+    @FindBy(css = "#style_empty_cart_wrapper__23a1z > p")
+    private WebElement emptyCartMessageField;
+
+    @FindBy(id = "style_avatar_wrapper__pEGIQ")
+    private WebElement accountIcon;
+
+    @FindBy(id = "logout")
+    private WebElement logOutButton;
+
+    @FindBy(className = "style_header_title_form__sxS9B")
+    private WebElement titleLoginPage;
+
+
+    public void goToLoginPage() {
+        driver.get(ENV.getUrl("/auth/login"));
     }
 
     public String getTitle() {
@@ -27,21 +90,81 @@ public class Homepage extends Page{
     }
 
     public boolean isZTrainLogoDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(this.ztrain_logo));
+        wait.until(visibilityOf(this.ztrain_logo));
         return this.ztrain_logo.isDisplayed();
     }
 
     public boolean displayProductPage() {
-        waitUntil(ExpectedConditions.visibilityOf(this.products));
+        waitUntil(visibilityOf(this.products));
         this.scrollDownToElement(products);
         return this.products.isDisplayed();
     }
 
     public void displayProductSheet() {
+        waitUntil(visibilityOf(this.products));
+        this.scrollDownToElement(products);
         clickOn(Tshirt);
     }
 
     public boolean displayProductDetails() {
         return this.productDetails.isDisplayed();
     }
+
+    public void addProductToCard() {
+        waitUntil(visibilityOf(this.products));
+        this.scrollDownToElement(productTitle);
+        action.moveToElement(listOfProducts.get(0)).build().perform();
+        action.moveToElement(addToCartIcons.get(0))
+                .click()
+                .perform();
+
+        action.moveToElement(listOfProducts.get(1)).build().perform();
+        action.moveToElement(addToCartIcons.get(1))
+                .click()
+                .perform();
+
+    }
+
+    public void openCard() {
+        clickOn(cardIcon);
+        if(waitUntil(visibilityOfAllElements(productName)))
+            System.out.println("Items visible in cart");
+        else System.out.println("Items not yet visible");
+    }
+
+    public String displayProductName() {
+        return this.productName.getText();
+    }
+
+    public void deleteProductCard() {
+        clickOn(deleteProductIcon);
+    }
+
+    public Double getProductPrice() {
+        return Double.parseDouble(this.productPrice.getText().replace(" €", ""));
+    }
+
+    public Double getTotalPriceCart() {
+        return Double.parseDouble(this.totalPriceCart.getText().replace(" €", ""));
+    }
+
+    public void trashCart() {
+        clickOn(trashCartButton);
+        if(waitUntil(visibilityOfAllElements(emptyCartWrapper)));
+    }
+
+    public String displayEmptycartMessage() {
+        return this.emptyCartMessageField.getText();
+    }
+
+    public void logOut() {
+        if(shortUntil(visibilityOf(accountIcon)))
+        action.moveToElement(accountIcon)
+                .moveToElement(logOutButton)
+                .click()
+                .perform();
+        System.out.println("ddddddddddddddddddddddddddddddddddddddkkkkkk");
+        waitUntil(visibilityOf(this.titleLoginPage));
+    }
+
 }

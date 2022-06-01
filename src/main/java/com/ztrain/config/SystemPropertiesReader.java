@@ -13,7 +13,7 @@ public enum SystemPropertiesReader {
     SystemPropertiesReader() {
         browser = System.getProperty("browser", "firefox");
         headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
-    env = Env.valueOf(System.getProperty("env", "production").toUpperCase());
+    env = Env.valueOf(System.getProperty("env", "development").toUpperCase());
     }
 
 

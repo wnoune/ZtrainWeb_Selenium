@@ -1,0 +1,1 @@
+{"uuid":"10487880-5748-4523-aeef-852d7e3efe0a","name":"Scenario: Trash cart","children":["9f94d7a8-4341-48ad-bc25-875b9feebf9c"],"befores":[{"name":"com.ztrain.steps.Hooks.beforeTests()","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1654085730878,"stop":1654085730880}],"afters":[],"start":1654085730875,"stop":1654085748851}

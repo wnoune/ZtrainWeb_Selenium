@@ -137,4 +137,8 @@ public class Page {
             webElement.sendKeys(key.substring(i, i + 1));
         }
     }
+
+    public Actions moveToElement() {
+        return action;
+    }
 }

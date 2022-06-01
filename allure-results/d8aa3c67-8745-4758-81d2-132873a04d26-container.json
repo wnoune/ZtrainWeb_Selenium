@@ -1,0 +1,1 @@
+{"uuid":"d8aa3c67-8745-4758-81d2-132873a04d26","name":"Scenario: Display product sheet","children":["43e47865-fdf4-43f1-9274-c7a63d7a98cf"],"befores":[{"name":"com.ztrain.steps.Hooks.beforeTests()","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1653987633890,"stop":1653987633897}],"afters":[],"start":1653987633882,"stop":1653987651763}

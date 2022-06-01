@@ -1,0 +1,1 @@
+{"uuid":"ab015acd-af59-4c07-ba8b-f66ff1f44bd1","name":"Scenario: Delete product to card","children":["12bfaa12-88a5-4fa3-b66c-80c161bf57ef"],"befores":[{"name":"com.ztrain.steps.Hooks.beforeTests()","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1654069018760,"stop":1654069018765}],"afters":[],"start":1654069018752,"stop":1654069058605}
