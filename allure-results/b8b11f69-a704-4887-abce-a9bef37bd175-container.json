@@ -1,0 +1,1 @@
+{"uuid":"b8b11f69-a704-4887-abce-a9bef37bd175","name":"Scenario: Log out of account","children":["6d1069cf-4fba-497c-abaf-a421f92e8f4c"],"befores":[{"name":"com.ztrain.steps.Hooks.beforeTests()","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1654097195131,"stop":1654097195131}],"afters":[],"start":1654097195130,"stop":1654097263835}

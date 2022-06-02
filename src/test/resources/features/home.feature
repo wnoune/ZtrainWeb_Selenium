@@ -17,7 +17,7 @@ Feature: As a customer, I am loggin and I want to shop
     And User clicks on card icon
     Then The product should be visible in the card
 
-  @TEST_OF-83
+  @TEST_OF-902
   Scenario: Trash cart
     When User adds products to cart
     And User clicks on card icon
@@ -37,3 +37,10 @@ Feature: As a customer, I am loggin and I want to shop
   Scenario: Log out of account
     When User move to account icon and clicks on logout
     Then User should be redirected on login page
+
+  @TEST_OF-901
+  Scenario: Test the oder button
+    When User adds products to cart
+    And User clicks on card icon
+    And User clicks on oder button
+    Then The oder validation pop-up is displaying

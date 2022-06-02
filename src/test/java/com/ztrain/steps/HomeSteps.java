@@ -89,7 +89,7 @@ public class HomeSteps extends Page {
 
 
 
-    //TEST_OF-83: Trash cart
+    //TEST_OF-902: Trash cart
     @And("User clicks on trash cart button")
     public void userClicksOnTrashCartButton() {
         homepage.trashCart();
@@ -104,5 +104,16 @@ public class HomeSteps extends Page {
     @When("User move to account icon and clicks on logout")
     public void userMoveToAccountIconAndClicksOnLogout() {
         homepage.logOut();
+    }
+
+    //TEST_OF-901: Test the order button
+    @And("User clicks on oder button")
+    public void userClicksOnOderButton() {
+        homepage.validateOder();
+    }
+
+    @Then("The oder validation pop-up is displaying")
+    public void theOderValidationPopUpIsDisplaying() {
+        assertEquals(this.homepage.getTitleValidationOder(), "Valider votre commande", "it's not the page");
     }
 }

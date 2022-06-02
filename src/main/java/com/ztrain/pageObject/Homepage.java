@@ -1,5 +1,6 @@
 package com.ztrain.pageObject;
 
+import com.sun.org.apache.bcel.internal.generic.PUSH;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -79,6 +80,21 @@ public class Homepage extends Page{
 
     @FindBy(className = "style_header_title_form__sxS9B")
     private WebElement titleLoginPage;
+
+    @FindBy(className = "style_quantity_in__XmF4D")
+    private List<WebElement> incrementQtyButton;
+
+    @FindBy(className = "style_quantity_dec__nm5ig")
+    private List<WebElement> decrementQtyButton;
+
+    @FindBy(className = "style_quantity__qJbQ3")
+    private List<WebElement> quantityField;
+
+    @FindBy(id = "style_btn_cart__zrT9Q")
+    private WebElement oderButton;
+
+    @FindBy(css = "#style_checkout_wrapper__JTsFz>h1")
+    private WebElement ValidateOderTitle;
 
 
     public void goToLoginPage() {
@@ -163,8 +179,22 @@ public class Homepage extends Page{
                 .moveToElement(logOutButton)
                 .click()
                 .perform();
-        System.out.println("ddddddddddddddddddddddddddddddddddddddkkkkkk");
-        waitUntil(visibilityOf(this.titleLoginPage));
+    }
+
+    public void inrementQuantity() {
+        clickOn(incrementQtyButton.get(0));
+    }
+
+    public void decrementQuantity() {
+        clickOn(decrementQtyButton.get(0));
+    }
+
+    public void validateOder() {
+        clickOn(oderButton);
+    }
+
+    public String getTitleValidationOder() {
+        return this.ValidateOderTitle.getText();
     }
 
 }
